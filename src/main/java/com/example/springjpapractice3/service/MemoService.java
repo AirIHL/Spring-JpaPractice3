@@ -47,4 +47,15 @@ public class MemoService {
 
         return new MemoResponseDto(memo.getId(), memo.getTitle(), memo.getContent());
     }
+
+    @Transactional
+    public MemoResponseDto update(Long id, MemoRequestDto dto) {
+
+        Memo memo = memoRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("이 id의 메모가 없습니다.")
+        );
+        memo.update(dto.getTitle(), dto.getContent());
+
+        return new MemoResponseDto(memo.getId(), memo.getTitle(), memo.getContent());
+    }
 }
