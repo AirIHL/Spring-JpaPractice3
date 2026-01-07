@@ -59,6 +59,7 @@ public class MemoService {
         return new MemoResponseDto(memo.getId(), memo.getTitle(), memo.getContent());
     }
 
+    @Transactional
     public void deleteById(Long id) {
 
         if (!memoRepository.existsById(id)) {
